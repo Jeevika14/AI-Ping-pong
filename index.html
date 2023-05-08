@@ -16,11 +16,14 @@
     </head>
     <body background="background1.jpg">
         <center>
-            <h1 class="btn btn-success heading">AI PING PONG WEBAPP
-                <button class="btn btn-success" id="Instructions" >Instructions</button>
-            </h4><br><br>
+            <div class="btn btn-success heading">
+            <h1>AI PING PONG WEBAPP</h1>
+            <button class="btn btn-success" data-toggle="modal" data-target="#myModal" >Instructions</button>
+            </div>
             <button class="btn btn-warning" id="start" onclick="start()">Play Game</button><br><br>
-            <h4 class="btn btn-danger" id="status"></h4>
+            <h4 class="btn btn-danger" id="status"></h4><br><br>
+            <button class="btn btn-info restart" onclick="restart()">Restart</button>
+            <div id="instructions"></div>
             <div id="canvas"></div>
 
         </center>
