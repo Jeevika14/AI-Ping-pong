@@ -25,7 +25,9 @@ var ball = {
 function setup(){
   var canvas =  createCanvas(700,600);
   canvas.parent('canvas');
+  var game_status= "";
   video= createCapture(VIDEO);
+
   video.size(700, 600);
 
   poseNet= ml5.poseNet(video, modelLoaded);
@@ -51,12 +53,14 @@ function draw(){
   {
     fill(#FF0000);
     stroke(#FF0000);
-    circle(rightWristX, rightWristY, 6px);
+    circle(rightWristX, rightWristY);
 
   }
 
-   paddleInCanvas();
+  paddleInCanvas();
 
+  if(game_status == "start")
+   {
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
@@ -71,9 +75,14 @@ function draw(){
    drawScore();  
    models();
     move();
+   }
 }
 
-
+function gameStart()
+  {
+    game_status= "start";
+    document.getElementById("start").innerHTML= "Game Is Loaded!";
+  }
 
 //function reset when ball does notcame in the contact of padde
 function reset(){
