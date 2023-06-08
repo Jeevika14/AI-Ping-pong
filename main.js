@@ -5,7 +5,7 @@ var paddle1X = 10,paddle1Height = 110;
 var paddle2Y = 685,paddle2Height = 70;
 
 var score1 = 0, score2 =0;
-var paddle1Y;
+var mouseY;
 
 var  playerscore =0;
 var audio1;
@@ -133,6 +133,8 @@ function move(){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
     ball.dx = -ball.dx+0.5;
     playerscore++;
+    play("ball_touch_paddel");
+    play("missed");
   }
   else{
     pcscore++;
@@ -148,15 +150,23 @@ if(pcscore ==4){
     stroke("white");
     textSize(25)
     text("Game Over!☹☹",width/2,height/2);
-    text("Reload The Page!",width/2,height/2+30)
+    text("Press The restart button to play again!",width/2,height/2+30)
     noLoop();
     pcscore = 0;
 }
    if(ball.y+ball.r > height || ball.y-ball.r <0){
        ball.dy =- ball.dy;
    }   
+
+
 }
 
+function restart()
+{
+  pcscore = 0;
+  playerscore = 0;
+  loop();
+}
 
 //width height of canvas speed of ball 
 function models(){
@@ -193,4 +203,10 @@ function gotPoses(results)
 		    console.log("noseX= " + noseX + ", noseY= " + noseY);
 		
 	}
+}
+
+function preload()
+{
+  ball_touch_paddel= loadSound("ball_touch_paddel.wav");
+  missed= loadSound("missed.wav");
 }
